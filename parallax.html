@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="website.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="js/jquery-css-transform.js" type="text/javascript"></script>
+		<script src="js/jquery-animate-css-rotate-scale.js" type="text/javascript"></script>
+		<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js" type="text/javascript"></script>
+		<script src="js/parallax.js"></script>
+		<script type="text/javascript" src="js/skrollr.js"></script>
+		<script src="js/scrollReveal.min.js"></script>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+		<script>
+		var toggle = true;
+		function tideForwardDown() {
+					$("#whiteTidal").stop(true, true).animate({left: "+=30",
+													bottom: "-=4"}, 900, "linear", tideForwardUp);
+				}
+				function tideForwardUp() {
+					$("#whiteTidal").stop(true, true).animate({left: "+=30",
+													bottom: "+=4"}, 900, "linear", tideBackDown);
+				}
+				function tideBackDown() {
+					$("#whiteTidal").stop(true, true).animate({left: "-=30",
+													bottom: "-=4"}, 900, "linear", tideBackUp);
+							}
+				function tideBackUp() {
+					$("#whiteTidal").stop(true, true).animate({left: "-=30",
+													bottom: "+=4"}, 900, "linear", tideForwardDown);
+				}
+
+		function wayPoint(elem) {
+			var element = $(elem);
+			var theWindow = $(window);
+			var winTop = theWindow.scrollTop();
+			var winBottom = winTop + theWindow.height();
+			var elementTop = element.offset().top;
+			var elementBottom = elementTop + element.height();
+/*			console.log("the window top: " + (winTop +400) + " and the element top: " + elementTop);
+			console.log("the window bottom: " + winBottom + " and the element bottom: " + elementBottom);*/
+			/*check for bottom
+			(elementBottom >= winBottom)*/
+			/*console.log("waypoint reply: " + (elementTop < winTop + 400));*/
+			return ((elementTop < winTop + 400));
+		}
+		$(document).ready(function(){
+				tideForwardDown();
+			});
+				//adjust zindex
+			$(window).scroll(function() {
+				if($(this).scrollTop() > 700){
+					$('#upLink').stop().animate({top: '50px'}, 500);
+				}
+				else{
+					$('#upLink').stop().animate({top: '-250px'}, 500);
+				}
+				$('#upLink').click(function() {
+					$('html, body').stop().animate({scrollTop: 0}, 500, function() {
+						$('#upLink').stop().animate({top: '-250px'}, 500);
+					});
+				});
+			});
+
+				$(window).on('scroll', function() {
+				if(wayPoint("#cathyOutline")) {
+					if(toggle){
+						/*console.log("it was true");*/
+						//$("#cathyOutline").stop(true, true).toggle("slide");
+						//.stop(true, true).animate({left: "+=650"}, 800);
+						$("#whiteTidal").stop(true, true).toggle("slide");
+						//stop(false, true).animate({left: "-=650"}, 800);
+						$("#personCity").stop(true, true).toggle("slide", {direction:'right'});
+						//.stop(true, true).animate({left: "+=700"},800);
+						toggle =!toggle;
+					}
+
+				}
+				//fix on resize
+				else if(wayPoint("#cathyOutline") == false) {
+					/*console.log("toggle before FALSE: " + toggle);*/
+					if(toggle == false) {
+						/*console.log("it was false");*/
+						//$("#cathyOutline").stop(true, true).toggle("slide");
+						//stop(true, true).animate({left: "-=650"}, 800);
+						$("#whiteTidal").stop(true, true).toggle("slide");
+						//.stop(false, true).animate({left: "+=650"}, 800);
+						$("#personCity").stop(true, true).toggle("slide", {direction:'right'});
+						//stop(true, true).animate({left: "-=700"}, 800);
+						/*tideForwardDown();*/
+						toggle = true;
+					}
+				}
+			});
+			
+		$(window).load(function() {
+			var s = skrollr.init();
+			var theWindow = $(window);
+			var windowHeight = theWindow.height();
+			//adjust accordingly based on menu/navigation
+			$("#parallax-window").css("min-height", windowHeight);
+			$("#contentContainer").css("height", windowHeight);
+		});
+		</script>
+	</head>
+	<body>
+		<ul id="menu">
+			<li><a href="#parallax-window">Home</a></li>
+			<li><a href="#secondScreen">About</a></li>
+			<li><a href="#thirdScreen">Fun</a></li>
+			<li><a href="#fourthScreen">Contact</a></li>
+		</ul>
+		<!-- change into a snake -->
+		<div id="rectScrollBar" data-0="width:0%;background:hsl(200, 100%, 50%);" data-1050="width:100%;background:hsl(920, 100%, 50%);"></div>
+		
+		<a id="upLink" style="z-index:1;">
+		<img src="pic/balloons.png"></img></a>
+		
+		<div id= "parallax-window" class="parallax-window" data-parallax="scroll" data-image-src="pic/background.png">
+			<div id="contentContainer">
+				<div id="wrapper">
+					<div id = "tidal" class= "block">
+						<img src="pic/whiteTidal.png" id="whiteTidal" alt= "Tidal Wave">
+					</div>
+					<div id = "personCity" class = "block">
+						<span><img src="pic/me.png" id="me" alt="me"></img></span>
+						<span><img src="pic/cathyCity.png" id="cathyCity" alt="cathyCity"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="secondScreen" class="parallax-window1" data-parallax="scroll" data-image-src="pic/charlies.jpg" data-natural-width="720" data-natural-height="960" data-bleed="10">
+			<img style="position:absolute;" src="pic/cathyOutline.png" id="cathyOutline" alt = "cathyOutline">
+		</div>
+
+		<div id="thirdScreen" class="parallax-window1" data-parallax="scroll" data-image-src="pic/spices.jpg" data-bleed="10">
+		</div>
+
+		<div id="fourthScreen" class="parallax-window1" data-parallax="scroll" data-image-src="pic/blueMount.jpg" data-bleed="10">
+			<img src="pic/egg.png" id="egg" alt = "egg">
+		</div>
+
+
+
+		<script>
+		window.sr = new scrollReveal();
+		</script>
+	</body>
+</html>
