@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="website.css">
+		<link rel="stylesheet" type="text/css" href="main.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="js/jquery-css-transform.js" type="text/javascript"></script>
 		<script src="js/jquery-animate-css-rotate-scale.js" type="text/javascript"></script>
@@ -10,6 +10,7 @@
 		<script type="text/javascript" src="js/skrollr.js"></script>
 		<script src="js/scrollReveal.min.js"></script>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
 		<script>
 		var toggle = true;
 		function tideForwardDown() {
@@ -45,7 +46,35 @@
 		}
 		$(document).ready(function(){
 				tideForwardDown();
+
+
+			$("a:link").mouseenter(function() {
+				$("a:link").css("width", "100px");
+				$("a:link").css("font-size", "150%");
+
 			});
+
+
+			$("a:link").mouseleave(function() {
+				$("a:link").css("width", "80px");
+				$("a:link").css("font-size", "100%");
+
+			});
+
+
+
+			$("#header").mouseenter(function() {
+				$("p").text("Scroll Down For More");
+
+			});
+
+
+			$("#header").mouseleave(function() {
+				$("p").text("Welcome to Cathy's Page");
+
+			});
+
+		});
 				//adjust zindex
 			$(window).scroll(function() {
 				if($(this).scrollTop() > 700){
@@ -58,7 +87,17 @@
 					$('html, body').stop().animate({scrollTop: 0}, 500, function() {
 						$('#upLink').stop().animate({top: '-250px'}, 500);
 					});
+				
+
 				});
+				if($(this).scrollTop() > 1700 && $(this).scrollTop() < 2780) {
+					$("a:link").css("color", "#000000");
+					$("a:link").css("background-color", "rgb(240, 237, 219)");
+				}
+				else {
+					$("a:link").css("color", "#FFFFFF");
+					$("a:link").css("background-color", "");
+				}
 			});
 
 				$(window).on('scroll', function() {
@@ -110,13 +149,18 @@
 			<li><a href="#fourthScreen">Contact</a></li>
 		</ul>
 		<!-- change into a snake -->
-		<div id="rectScrollBar" data-0="width:0%;background:hsl(200, 100%, 50%);" data-1050="width:100%;background:hsl(920, 100%, 50%);"></div>
+		<div id="rectScrollBar" data-0="width:0%;background:hsl(200, 100%, 50%);" data-3210="width:100%;background:hsl(920, 100%, 50%);"></div>
 		
 		<a id="upLink" style="z-index:1;">
 		<img src="pic/balloons.png"></img></a>
 		
 		<div id= "parallax-window" class="parallax-window" data-parallax="scroll" data-image-src="pic/background.png">
 			<div id="contentContainer">
+
+
+				<div id="header">
+					<p>Welcome To Cathy's Page</p>
+				</div>
 				<div id="wrapper">
 					<div id = "tidal" class= "block">
 						<img src="pic/whiteTidal.png" id="whiteTidal" alt= "Tidal Wave">
@@ -129,14 +173,14 @@
 			</div>
 		</div>
 		
-		<div id="secondScreen" class="parallax-window1" data-parallax="scroll" data-image-src="pic/charlies.jpg" data-natural-width="720" data-natural-height="960" data-bleed="10">
+		<div id="secondScreen" class="parallax-window1" data-parallax="scroll" data-image-src="pic/charlies.jpg" data-natural-width="720" data-natural-height="960" >
 			<img style="position:absolute;" src="pic/cathyOutline.png" id="cathyOutline" alt = "cathyOutline">
 		</div>
 
-		<div id="thirdScreen" class="parallax-window1" data-parallax="scroll" data-image-src="pic/spices.jpg" data-bleed="10">
+		<div id="thirdScreen" class="parallax-window1" data-parallax="scroll" data-image-src="pic/spices.jpg">
 		</div>
 
-		<div id="fourthScreen" class="parallax-window1" data-parallax="scroll" data-image-src="pic/blueMount.jpg" data-bleed="10">
+		<div id="fourthScreen" class="parallax-window1" data-parallax="scroll" data-image-src="pic/blueMount.jpg">
 			<img src="pic/egg.png" id="egg" alt = "egg">
 		</div>
 
