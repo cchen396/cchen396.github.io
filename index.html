@@ -17,24 +17,30 @@
 					$("#whiteTidal").stop(true, true).animate({left: "+=30",
 													bottom: "-=4"}, 900, "linear", tideForwardUp);
 				}
-				function tideForwardUp() {
-					$("#whiteTidal").stop(true, true).animate({left: "+=30",
-													bottom: "+=4"}, 900, "linear", tideBackDown);
-				}
-				function tideBackDown() {
-					$("#whiteTidal").stop(true, true).animate({left: "-=30",
-													bottom: "-=4"}, 900, "linear", tideBackUp);
-							}
-				function tideBackUp() {
-					$("#whiteTidal").stop(true, true).animate({left: "-=30",
-													bottom: "+=4"}, 900, "linear", tideForwardDown);
-				}
+		function tideForwardUp() {
+			$("#whiteTidal").stop(true, true).animate({left: "+=30",
+											bottom: "+=4"}, 900, "linear", tideBackDown);
+		}
+		function tideBackDown() {
+			$("#whiteTidal").stop(true, true).animate({left: "-=30",
+											bottom: "-=4"}, 900, "linear", tideBackUp);
+					}
+		function tideBackUp() {
+			$("#whiteTidal").stop(true, true).animate({left: "-=30",
+											bottom: "+=4"}, 900, "linear", tideForwardDown);
+		}
+		function arrowDown() {
+			$("#arrowDown").stop(true, true).animate({top: "-=10"}, 700, "linear", arrowUp);
+		}
+		function arrowUp() {
+			$("#arrowDown").stop(true, true).animate({top: "+=10"}, 700, "linear", arrowDown);
+		}
 
 		function wayPoint(elem) {
 			var element = $(elem);
 			var theWindow = $(window);
 			var winTop = theWindow.scrollTop();
-			var winBottom = winTop + theWindow.height();
+			var winBottm = winTop + theWindow.height();
 			var elementTop = element.offset().top;
 			var elementBottom = elementTop + element.height();
 /*			console.log("the window top: " + (winTop +400) + " and the element top: " + elementTop);
@@ -45,38 +51,83 @@
 			return ((elementTop < winTop + 400));
 		}
 		$(document).ready(function(){
-				tideForwardDown();
+			tideForwardDown();
+			arrowDown();
 
 
-			$("a:link").mouseenter(function() {
-				$("a:link").css("width", "100px");
-				$("a:link").css("font-size", "150%");
-
-			});
-
-
-			$("a:link").mouseleave(function() {
-				$("a:link").css("width", "80px");
-				$("a:link").css("font-size", "100%");
+			$("li.toolBar a:link").mouseenter(function() {
+				$("li.toolBar  a:link").css("width", "100px");
+				$("li.toolBar  a:link").css("font-size", "150%");
 
 			});
 
 
+			$("li.toolBar a:link").mouseleave(function() {
+				$("li.toolBar  a:link").css("width", "80px");
+				$("li.toolBar  a:link").css("font-size", "100%");
 
-			$("#header").mouseenter(function() {
+			});
+
+
+			$("#arrowDown").mouseenter(function() {
 				$("p").text("Scroll Down For More");
 
 			});
 
 
-			$("#header").mouseleave(function() {
+			$("#arrowDown").mouseleave(function() {
 				$("p").text("Welcome to Cathy's Page");
+
+			});
+
+			$("#arrowDown").click(function() {
+				if($(window).scrollTop() < $('#secondScreen').offset().top) {
+					$("#arrowDown").stop();
+					//$("#arrowDown").fadeOut($("#arrowDown").fadeToggle());
+					$("#arrowDown").removeClass("arrowDown");
+					$("#arrowDown").addClass("arrowReposition");
+					$("#arrowDown").css("top", "");
+					arrowDown();
+
+					$("html, body").stop().animate({scrollTop:$('#secondScreen').offset().top}, 500);
+				}
+				else if($(window).scrollTop() < $('#thirdScreen').offset().top) {
+					$("html, body").stop().animate({scrollTop:$('#thirdScreen').offset().top}, 500);
+				}
+				else if($(window).scrollTop() <= $('#fourthScreen').offset().top) {
+					$("html, body").stop().animate({scrollTop:$('#fourthScreen').offset().top +50}, 500);
+					$("#arrowDown").css("visibility", "hidden");
+				}
 
 			});
 
 		});
 				//adjust zindex
 			$(window).scroll(function() {
+					// $("#arrowDown").stop();
+					// $("#arrowDown").removeClass("arrowReposition");
+					// $("#arrowDown").addClass("arrowDown");
+					// arrowDown();
+
+				if($(window).scrollTop() < $("#whiteTidal").offset().top) {
+					console.log("in second screen");
+					$("#arrowDown").stop();
+					// $("#arrowDown").removeClass("arrowReposition");
+					// $("#arrowDown").addClass("arrowDown");
+					// arrowDown();
+				}
+				if($(window).scrollTop() < $('#fourthScreen').offset().top) {
+					$("#arrowDown").stop();
+					$("#arrowDown").removeClass("arrowDown");
+					$("#arrowDown").addClass("arrowReposition");
+					$("#arrowDown").css("top", "");
+					arrowDown();
+					$("#arrowDown").css("visibility", "");
+				}
+				else if ($(window).scrollTop() > $('#fourthScreen').offset().top) {
+					$("#arrowDown").css("visibility", "hidden");
+				}
+
 				if($(this).scrollTop() > 700){
 					$('#upLink').stop().animate({top: '50px'}, 500);
 				}
@@ -90,13 +141,13 @@
 				
 
 				});
-				if($(this).scrollTop() > 1700 && $(this).scrollTop() < 2780) {
-					$("a:link").css("color", "#000000");
-					$("a:link").css("background-color", "rgb(240, 237, 219)");
+				if($(this).scrollTop() > $('#thirdScreen').offset().top && $(this).scrollTop() < $('#fourthScreen').offset().top) {
+					$("li.toolBar a:link").css("color", "#000000");
+					$("li.toolBar a:link").css("background-color", "rgb(240, 237, 219)");
 				}
 				else {
-					$("a:link").css("color", "#FFFFFF");
-					$("a:link").css("background-color", "");
+					$("li.toolBar a:link").css("color", "#FFFFFF");
+					$("li.toolBar a:link").css("background-color", "");
 				}
 			});
 
@@ -156,15 +207,18 @@
 		<img src="pic/balloons.png"></img></a>
 		
 		<div id= "parallax-window" class="parallax-window" data-parallax="scroll" data-image-src="pic/background.png">
-			<div id="contentContainer">
+		<div id="contentContainer">
 
+		<div id = "scrollDown">
+			<img class="arrowDown" id = "arrowDown" src="pic/arrowDown.png"></img>
+		</div>
 
 				<div id="header">
-					<p>Welcome To Cathy's Page</p>
+					<p id="welcomeHeader">Welcome To Cathy's Page</p>
 				</div>
 				<div id="wrapper">
 					<div id = "tidal" class= "block">
-						<a href="#fourthScreen"><img src="pic/whiteTidal.png" id="whiteTidal" alt= "Tidal Wave"></a>
+						<img src="pic/whiteTidal.png" id="whiteTidal" alt= "Tidal Wave">
 					</div>
 					<div id = "personCity" class = "block">
 						<a href="#secondScreen"><span><img src="pic/me.png" id="me" alt="me"></img></span></a>
@@ -175,7 +229,7 @@
 		</div>
 		
 		<div id="secondScreen" class="parallax-window1" data-parallax="scroll" data-image-src="pic/charlies.jpg" data-natural-width="720" data-natural-height="960" >
-			<img style="position:absolute;" src="pic/cathyOutline.png" id="cathyOutline" alt = "cathyOutline">
+			<img style="position:absolute; z-index: -1;" src="pic/cathyOutline.png" id="cathyOutline" alt = "cathyOutline">
 		</div>
 
 		<div id="thirdScreen" class="parallax-window1" data-parallax="scroll" data-image-src="pic/spices.jpg">

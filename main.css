@@ -156,9 +156,8 @@ html,body {
 #header {
 	z-index: 2;
 
-
 }
-p {
+#welcomeHeader {
     position: absolute;
     text-align: center;
     top: 15%;
@@ -168,4 +167,25 @@ p {
     font-size: 300%;
     font-family: 'Poiret One', cursive;
     font-weight: bold;
+}
+
+#scrollDown {
+	z-index: 2;
+	position: absolute;
+}
+.arrowDown {
+	position: fixed;
+	top: 35%;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+}
+
+.arrowReposition {
+	position: fixed;
+	bottom: 2%;
+	left: 2%;
+
+
 }
