@@ -110,12 +110,11 @@ html,body {
    	z-index: 2;
 }
 
- li {
+ li.toolBar {
 	float: left;
     width: 25%;
 }
-
-.toolBar a:link, a:visited {
+ li.toolBar a:link, a:visited {
 	margin-left: auto;
 	margin-right: auto;
 	left: 0;
@@ -123,7 +122,6 @@ html,body {
     padding: 0;
     display: block;
     width: 80px;
-
     font-family: 'Poiret One', cursive;
     font-weight: bold;
     /*//"Trebuchet MS", Helvetica, sans-serif;*/
@@ -141,7 +139,7 @@ html,body {
 }
 
 
-.toolBar a:hover, a:active {
+ li.toolBar a:hover, a:active {
     background-color: #000000;
 }
 
