@@ -110,6 +110,7 @@
 						//stop(false, true).animate({left: "-=650"}, 800);
 						$("#personCity").stop(true, true).toggle("slide", {direction:'right'});
 						//.stop(true, true).animate({left: "+=700"},800);
+
 						toggle =!toggle;
 					}
 
@@ -143,10 +144,10 @@
 	</head>
 	<body>
 		<ul id="menu">
-			<li><a href="#parallax-window">Home</a></li>
-			<li><a href="#secondScreen">About</a></li>
-			<li><a href="#thirdScreen">Fun</a></li>
-			<li><a href="#fourthScreen">Contact</a></li>
+			<li><a class="toolBar" href="#parallax-window">Home</a></li>
+			<li><a class="toolBar" href="#secondScreen">About</a></li>
+			<li><a class="toolBar" href="#thirdScreen">Fun</a></li>
+			<li><a class="toolBar" href="#fourthScreen">Contact</a></li>
 		</ul>
 		<!-- change into a snake -->
 		<div id="rectScrollBar" data-0="width:0%;background:hsl(200, 100%, 50%);" data-3210="width:100%;background:hsl(920, 100%, 50%);"></div>
@@ -163,11 +164,11 @@
 				</div>
 				<div id="wrapper">
 					<div id = "tidal" class= "block">
-						<img src="pic/whiteTidal.png" id="whiteTidal" alt= "Tidal Wave">
+						<a href="#fourthScreen"><img src="pic/whiteTidal.png" id="whiteTidal" alt= "Tidal Wave"></a>
 					</div>
 					<div id = "personCity" class = "block">
-						<span><img src="pic/me.png" id="me" alt="me"></img></span>
-						<span><img src="pic/cathyCity.png" id="cathyCity" alt="cathyCity"></span>
+						<a href="#secondScreen"><span><img src="pic/me.png" id="me" alt="me"></img></span></a>
+						<a href="http://www.fellinisatlanta.com/fellinis.html"><span><img src="pic/cathyCity.png" id="cathyCity" alt="cathyCity"></span></a>
 					</div>
 				</div>
 			</div>

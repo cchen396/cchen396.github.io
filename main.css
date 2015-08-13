@@ -42,7 +42,7 @@ html,body {
 	left: 0;
 	right: 0;
 	bottom: 5px;
-   	width: 1300px;
+   /*	min-width: 1300px;*/
    	/*height: 600px;*/
 
 }
@@ -61,8 +61,8 @@ html,body {
 #whiteTidal {
 	position: absolute;
 	left: 150px;
-	/*	bottom: 0;
-	right: 0;*/
+	bottom: 0;
+	/*right: 0;*/
 /*	width: 622px;
 	height: 522px;*/
 
@@ -110,12 +110,12 @@ html,body {
    	z-index: 2;
 }
 
-li {
+ li {
 	float: left;
     width: 25%;
 }
 
-a:link, a:visited {
+.toolBar a:link, a:visited {
 	margin-left: auto;
 	margin-right: auto;
 	left: 0;
@@ -141,7 +141,7 @@ a:link, a:visited {
 }
 
 
-a:hover, a:active {
+.toolBar a:hover, a:active {
     background-color: #000000;
 }
 
@@ -156,7 +156,7 @@ a:hover, a:active {
 }
 
 #header {
-	z-index: 1;
+	z-index: 2;
 
 
 }
