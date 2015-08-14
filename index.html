@@ -83,50 +83,31 @@
 			$("#arrowDown").click(function() {
 				if($(window).scrollTop() < $('#secondScreen').offset().top) {
 					$("#arrowDown").stop();
-					//$("#arrowDown").fadeOut($("#arrowDown").fadeToggle());
+					$("#arrowDown").animate({opacity: 0});
 					$("#arrowDown").removeClass("arrowDown");
 					$("#arrowDown").addClass("arrowReposition");
-					$("#arrowDown").css("top", "");
-					arrowDown();
-
+					$("#arrowDown").css("top", "90%");
 					$("html, body").stop().animate({scrollTop:$('#secondScreen').offset().top}, 500);
+					$("#arrowDown").stop();
+					$("#arrowDown").animate({opacity:1}, 900);
+					arrowDown();
 				}
 				else if($(window).scrollTop() < $('#thirdScreen').offset().top) {
 					$("html, body").stop().animate({scrollTop:$('#thirdScreen').offset().top}, 500);
 				}
 				else if($(window).scrollTop() <= $('#fourthScreen').offset().top) {
 					$("html, body").stop().animate({scrollTop:$('#fourthScreen').offset().top +50}, 500);
-					$("#arrowDown").css("visibility", "hidden");
-				}
+					$("#arrowDown").stop();
+					$("#arrowDown").animate({opacity:0});
+				// 	$("#arrowDown").animate({opacity: 0});
+				 }
 
 			});
 
 		});
 				//adjust zindex
 			$(window).scroll(function() {
-					// $("#arrowDown").stop();
-					// $("#arrowDown").removeClass("arrowReposition");
-					// $("#arrowDown").addClass("arrowDown");
-					// arrowDown();
 
-				if($(window).scrollTop() < $("#whiteTidal").offset().top) {
-					console.log("in second screen");
-					$("#arrowDown").stop();
-					// $("#arrowDown").removeClass("arrowReposition");
-					// $("#arrowDown").addClass("arrowDown");
-					// arrowDown();
-				}
-				if($(window).scrollTop() < $('#fourthScreen').offset().top) {
-					$("#arrowDown").stop();
-					$("#arrowDown").removeClass("arrowDown");
-					$("#arrowDown").addClass("arrowReposition");
-					$("#arrowDown").css("top", "");
-					arrowDown();
-					$("#arrowDown").css("visibility", "");
-				}
-				else if ($(window).scrollTop() > $('#fourthScreen').offset().top) {
-					$("#arrowDown").css("visibility", "hidden");
-				}
 
 				if($(this).scrollTop() > 700){
 					$('#upLink').stop().animate({top: '50px'}, 500);
@@ -152,15 +133,38 @@
 			});
 
 				$(window).on('scroll', function() {
+
+					if($(window).scrollTop() == $("#parallax-window").offset().top) {
+						// console.log("in second screen");
+						$("#arrowDown").stop();
+						$("#arrowDown").removeClass("arrowReposition");
+						$("#arrowDown").addClass("arrowDown");
+						$("#arrowDown").css("top", "220px");
+						arrowDown();
+					}
+					if($(window).scrollTop() < $('#fourthScreen').offset().top && 
+							$(window).scrollTop() >= $('#secondScreen').offset().top) {
+
+						$("#arrowDown").stop();
+						$("#arrowDown").animate({opacity: 0});
+						$("#arrowDown").removeClass("arrowDown");
+						$("#arrowDown").addClass("arrowReposition");
+						$("#arrowDown").css("top", "90%");
+
+						$("#arrowDown").stop();
+						$("#arrowDown").animate({opacity:1}, 900);
+						arrowDown();
+
+					}
+					else if ($(window).scrollTop() >= $('#fourthScreen').offset().top) {
+						$("#arrowDown").animate({opacity: 0});
+					}
+
+
 				if(wayPoint("#cathyOutline")) {
 					if(toggle){
-						/*console.log("it was true");*/
-						//$("#cathyOutline").stop(true, true).toggle("slide");
-						//.stop(true, true).animate({left: "+=650"}, 800);
 						$("#whiteTidal").stop(true, true).toggle("slide");
-						//stop(false, true).animate({left: "-=650"}, 800);
 						$("#personCity").stop(true, true).toggle("slide", {direction:'right'});
-						//.stop(true, true).animate({left: "+=700"},800);
 
 						toggle =!toggle;
 					}
@@ -168,16 +172,9 @@
 				}
 				//fix on resize
 				else if(wayPoint("#cathyOutline") == false) {
-					/*console.log("toggle before FALSE: " + toggle);*/
 					if(toggle == false) {
-						/*console.log("it was false");*/
-						//$("#cathyOutline").stop(true, true).toggle("slide");
-						//stop(true, true).animate({left: "-=650"}, 800);
 						$("#whiteTidal").stop(true, true).toggle("slide");
-						//.stop(false, true).animate({left: "+=650"}, 800);
 						$("#personCity").stop(true, true).toggle("slide", {direction:'right'});
-						//stop(true, true).animate({left: "-=700"}, 800);
-						/*tideForwardDown();*/
 						toggle = true;
 					}
 				}
@@ -192,7 +189,7 @@
 			$("#contentContainer").css("height", windowHeight);
 		});
 		</script>
-		<title></title>
+		<title>Cathy's WebPage</title>
 	</head>
 	<body>
 		<ul id="menu">
