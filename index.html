@@ -11,8 +11,36 @@
 		<script src="js/scrollReveal.min.js"></script>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet' type='text/css'>
 		<script>
 		var toggle = true;
+
+		function changeText() {
+			console.log("entered");
+			if(document.getElementById("textButton").value = "More >") {
+				console.log(document.getElementById("textButton").value);
+				document.getElementById("textBody1").innerHTML = "<H1>How I Incorporated My Hobbies into This Website</H1>";
+				document.getElementById("textBody1").style.fontSize = "100%";
+				document.getElementById("textBody1").style.top = "80px";
+				document.getElementById("textBody2").innerHTML = "As for coding, I actually did not start coding for fun until I put this website on my plate. I started from scratch (with no template), learning the basics of HTML and CSS, so this website still has a long way to go, but I am still eager and willing to improve on it. When it comes to visual appearance, organization, and usability, I am a huge stickler and I have a ton of fun making organizational and visual based decisions. Due to this fun fact about me, in an alternate world I would love to be a top-notch wedding planner.<br><br>" + "Regarding my sketching, All drawings on this page are hand drawn and computer traced by yours truly. I love to sketch in my free time, especially since its a great emotional output for me.<br><br>" + 	"The backgrounds of each section of this website were carefully chosen. The 'Home', 'About', and 'Contact' backgrounds are all locations I have been to and cherish. Both the 'About' and 'Contact' backgrounds are two of a few regions I have hiked on. The 'About' background is Charlie's Bunion in the Smoky Mountains, and the 'Contact' background is of the Blue Ridge Mountains. You probably already figured, but I love to hike! Its a great workout and a peaceful journey I love to experience with loved ones.<br><br>" + "Last but not least, for my 'Fun' page, I dedicated it to my obsession for food. Unforutnately, I have celiac's disease, so staying completely gluten free is really hard unless I am cooking for myself. So, if you like to stay gluten free or you have celiac's as well, please follow my cooking adventures!";
+				document.getElementById("textBody2").style.fontSize = "100%";
+				document.getElementById("textBody2").style.lineHeight = "1.1em";
+				document.getElementById("textButton").value = "< Back";
+				document.getElementById("textButton").innerHTML = "< Back";
+			}
+			else if (document.getElementById("textButton").value = "< Back"){
+				console.log("help me");
+				document.getElementById("textBody1").innerHTML = "<H1>Hello There!</H1>";
+				document.getElementById("textBody1").style.fontSize = "300%";
+				document.getElementById("textBody1").style.top = "70px";
+				document.getElementById("textBody2").innerHTML = "My name is Catherine Chen (Cathy for short). I am a third year computer science major at Georgia Institute of Technology, and am currently involved in the People thread and Info Internetworks thread. This website is to showcase my passions in a fun way and for you to get to know me better as a person. <br>" + "My major hobbies are hiking, sketching, cooking, and coding. By combining all of my hobbies, I was able to make this website 100% Cathy Chen. I first developed this website just as a learning process to get into HTML/CSS, but I eventually loved doing it so much, I decided to evolve the development to create an online representation of me.<br>";
+				document.getElementById("textBody2").style.fontSize = "120%";
+				document.getElementById("textBody2").style.lineHeight = "2em";
+				document.getElementById("textButton").innerHTML = "More >";
+				document.getElementById("textButton").value = "More >";
+			}
+		}
+
 		function tideForwardDown() {
 					$("#whiteTidal").stop(true, true).animate({left: "+=30",
 													bottom: "-=4"}, 900, "linear", tideForwardUp);
@@ -165,7 +193,7 @@
 					if(toggle){
 						$("#whiteTidal").stop(true, true).toggle("slide");
 						$("#personCity").stop(true, true).toggle("slide", {direction:'right'});
-
+						$("#image").stop(true, true).animate({left: "-=650"}, 700);
 						toggle =!toggle;
 					}
 
@@ -175,6 +203,8 @@
 					if(toggle == false) {
 						$("#whiteTidal").stop(true, true).toggle("slide");
 						$("#personCity").stop(true, true).toggle("slide", {direction:'right'});
+						$("#image").stop(true, true).animate({left: "+=650"}, 700);
+
 						toggle = true;
 					}
 				}
@@ -227,7 +257,23 @@
 		</div>
 		
 		<div id="secondScreen" class="parallax-window1" data-parallax="scroll" data-image-src="pic/charlies.jpg" data-natural-width="720" data-natural-height="960" >
-			<img style="position:absolute; z-index: -1;" src="pic/cathyOutline.png" id="cathyOutline" alt = "cathyOutline">
+			<div id="aboutMe">
+				<img style="position:absolute; z-index: -1;" src="pic/cathyOutline.png" id="cathyOutline" alt = "cathyOutline">
+				
+				<div id = "image">
+					<img style="position:absolute; z-index: -1;" src="pic/polaroid.png" id="polaroid" alt="polaroid">
+					<H1 class = "textBody1" id = "textBody1"> Hello There!<br></H1>
+					<p class = "textBody2" id = "textBody2">
+					My name is Catherine Chen (Cathy for short). I am a third year computer science major at Georgia Institute of Technology, and am currently involved in the People thread and Info Internetworks thread. This website is to showcase my passions in a fun way and for you to get to know me better as a person. <br>
+
+					My major hobbies are hiking, sketching, cooking, and coding. By combining all of my hobbies, I was able to make this website 100% Cathy Chen. I first developed this website just as a learning process to get into HTML/CSS, but I eventually loved doing it so much, I decided to evolve the development to create an online representation of me.<br>
+					</p>
+
+					<button id = "textButton" type="button" class = "textButton" onclick="changeText()" value = "More >">More ></button>
+
+				</div>
+			</div>
+
 		</div>
 
 		<div id="thirdScreen" class="parallax-window1" data-parallax="scroll" data-image-src="pic/spices.jpg">
